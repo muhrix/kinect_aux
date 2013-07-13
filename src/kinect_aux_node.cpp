@@ -1,4 +1,4 @@
-#include <libusb-1.0/libusb.h>
+#include <libusb.h>
 #include <ros/ros.h>
 #include <std_msgs/UInt8.h>
 #include <std_msgs/UInt16.h>

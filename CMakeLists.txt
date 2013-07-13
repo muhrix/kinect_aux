@@ -5,6 +5,8 @@ project(kinect_aux)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs std_msgs)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBUSB REQUIRED libusb-1.0)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -50,7 +52,7 @@ catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES kinect_aux
   CATKIN_DEPENDS roscpp sensor_msgs std_msgs
-  DEPENDS libusb-1.0
+  DEPENDS LIBUSB
 )
 
 ###########
@@ -80,7 +82,6 @@ add_executable(kinect_aux_node src/kinect_aux_node.cpp)
 target_link_libraries(kinect_aux_node
    ${catkin_LIBRARIES}
    ${LIBUSB_LIBRARIES}
-   usb-1.0
 )
 
 #############
