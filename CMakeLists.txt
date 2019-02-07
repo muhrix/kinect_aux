@@ -5,15 +5,17 @@ project(kinect_aux)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs std_msgs)
-#find_package(PkgConfig REQUIRED)
-#pkg_check_modules(LIBUSB REQUIRED libusb-1.0)
-find_path(LIBUSB_INCLUDEDIR 
-          NAMES libusb.h
-          HINTS /usr/include/libusb-1.0)
-find_library(LIBUSB_LIBRARIES
-             NAMES usb-1.0
-             HINTS /usr/lib/ /usr/x86_64-linux-gnu/
-             PATH_SUFFIXES lib)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBUSB REQUIRED libusb-1.0)
+pkg_search_module(LIBUSB REQUIRED libusb-1.0)
+
+#find_path(LIBUSB_INCLUDEDIR 
+#          NAMES libusb.h
+#          HINTS /usr/include/libusb-1.0)
+#find_library(LIBUSB_LIBRARIES
+#             NAMES usb-1.0
+#             HINTS /usr/lib/ /usr/x86_64-linux-gnu/
+#             PATH_SUFFIXES lib)
 
 message(STATUS ${LIBUSB_INCLUDEDIR})
 message(STATUS ${LIBUSB_LIBRARIES})
@@ -62,8 +64,8 @@ catkin_package(
 #  INCLUDE_DIRS include LIBUSB_INCLUDEDIRS
 #  LIBRARIES kinect_aux
   CATKIN_DEPENDS roscpp sensor_msgs std_msgs
-#  DEPENDS LIBUSB
-  DEPENDS LIBUSB_LIBRARIES
+  DEPENDS LIBUSB
+#  DEPENDS LIBUSB_LIBRARIES
 )
 
 ###########
